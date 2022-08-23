@@ -43,6 +43,10 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     ## added
     'feed_app.apps.FeedAppConfig',  # 'feed_app',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     ## default
     'django.contrib.admin',
@@ -140,3 +144,83 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# for allauth settings
+# https://django-allauth.readthedocs.io/en/latest/installation.html
+# Now start your server, visit your admin pages (e.g. http://localhost:8000/admin/) 
+# and follow these steps:
+# Add a Site for your domain, matching settings.SITE_ID (django.contrib.sites app).
+# Add your site name and domail in admin site (/admin/sites/site/) 
+# and replace SITE_ID with your sites pk.
+SITE_ID = 2 # currently the id in the database of the site is , id = 2
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+# for allauth
+# Specifies the login method to use – whether the user logs in by entering 
+# their username, e-mail address, or either one of both. 
+# Setting this to “email” requires ACCOUNT_EMAIL_REQUIRED=True
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+# The user is required to hand over an e-mail address when signing up.
+ACCOUNT_EMAIL_REQUIRED = True
+# Determines whether or not an e-mail address is automatically confirmed by a GET request.
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none".
+# Setting this to “mandatory” requires ACCOUNT_EMAIL_REQUIRED to be True
+# When set to “mandatory” the user is blocked from logging in until the email 
+# address is verified. Choose “optional” or “none” to allow logins 
+# with an unverified e-mail address. In case of “optional”, 
+# the e-mail verification mail is still sent, whereas in case of 
+# “none” no e-mail verification mails are sent.
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+# The default behaviour is not log users in and to redirect them to 
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL.
+# By changing this setting to True, users will automatically be logged in 
+# once they confirm their email address. Note however that this only works 
+# when confirming the email address immediately after signing up, 
+# assuming users didn’t close their browser or used some sort of private browsing mode.
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+# Determines whether or not the user is automatically logged out by a GET request. 
+# GET is not designed to modify the server state, and in this case it can be dangerous. 
+# See LogoutView in the documentation for details.
+ACCOUNT_LOGOUT_ON_GET = True
+# By changing this setting to True, users will automatically be logged in once 
+# they have reset their password. By default they are redirected 
+# to the password reset done page.
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+# The URL (or URL name) to return to after the user logs out. 
+# Defaults to Django’s LOGOUT_REDIRECT_URL, unless that is empty, then “/” is used
+ACCOUNT_LOGOUT_REDIRECT_URL = '/' # back to home page
+# This setting determines whether the username is stored in lowercase (False) 
+# or whether its casing is to be preserved (True). Note that when casing is preserved, 
+# potentially expensive __iexact lookups are performed when filter on username. 
+# For now, the default is set to True to maintain backwards compatibility.
+ACCOUNT_PRESERVE_USERNAME_CASING = False
+# Controls the life time of the session. Set to None to ask the user 
+# (“Remember me?”), False to not remember, and True to always remember.
+ACCOUNT_SESSION_REMEMBER = True
+# When signing up, let the user type in their password twice to avoid typos.
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True 
+# An integer specifying the minimum allowed length of a username.
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+
+
+
+# default login url
+# The URL or named URL pattern where requests are redirected 
+# for login when using the login_required() decorator, 
+# LoginRequiredMixin, or AccessMixin.
+LOGIN_URL = '/login/'
+
+# The URL or named URL pattern where requests are redirected after login 
+# when the LoginView doesn’t get a next GET parameter.
+LOGIN_REDIRECT_URL = '/' # home page for now
