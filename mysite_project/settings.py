@@ -22,6 +22,8 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR same as PROJECT_DIR
+# PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,7 +43,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     ## added
     'feed_app.apps.FeedAppConfig',  # 'feed_app',
-    
+
     ## default
     'django.contrib.admin',
     'django.contrib.auth',
@@ -66,7 +68,12 @@ ROOT_URLCONF = 'mysite_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+            # or if we move templates to our mysite_project
+            # BASE_DIR / 'mysite_project/templates',
+            # os.path.join(PROJECT_DIR, 'mysite_project/templates')
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

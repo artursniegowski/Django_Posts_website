@@ -1,0 +1,12 @@
+{% extends 'base_page_templates/base.html' %}
+
+{% block title %}Main feed page{% endblock  %}
+
+{% block main_content %}
+    {% for post in posts  %}
+        {{ post.text }} writen on {{ post.date }} 
+        <hr> 
+    {% empty %}
+    {% endfor %}
+
+{% endblock  %}
