@@ -20,6 +20,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('feed_app.urls', namespace='feed_app')),
+    # https://django-allauth.readthedocs.io/en/latest/views.html
+    # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...
     path('', include('allauth.urls')),
     path('admin/', admin.site.urls),   
 ]
