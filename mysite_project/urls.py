@@ -26,11 +26,11 @@ urlpatterns = [
     # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...
     path('', include('allauth.urls')),
     path('admin/', admin.site.urls),   
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # During development, you can serve user-uploaded media files from MEDIA_ROOT 
 # using the django.views.static.serve() view.
 # This is not suitable for production use! For some common deployment 
 # strategies, see How to deploy static files.
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

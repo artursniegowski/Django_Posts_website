@@ -1,0 +1,12 @@
+{% extends 'base_page_templates/base.html' %}
+
+{% block title %}Create a new post{% endblock  %}
+
+{% block main_content %}
+   <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <hr>
+        <span>{{ form.text.input_type }}</span>
+   </form>
+{% endblock  %}

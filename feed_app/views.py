@@ -1,5 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-
 from feed_app.models import Post 
 
 # Home page view
@@ -9,3 +9,22 @@ class HomePageView(generic.ListView):
     model = Post
     template_name: str = "feed_app/index.html"
     queryset = Post.objects.all().order_by("-id")[:30]
+
+# create a detail post view
+class PostDetailView(generic.DeleteView):
+    # by default if model is Post the context will be post
+    # context_object_name: str = "post"
+    http_method_names: list[str] = ["get"]
+    template_name: str = "feed_app/detail.html"
+    model = Post
+
+
+# Note that if you don’t specify the login_url parameter, you’ll need to ensure 
+# that the settings.LOGIN_URL and your login view are properly associated. 
+# settings.LOGIN_URL = '/login/' - this is set in the settings
+class CreateNewPostView(LoginRequiredMixin, generic.CreateView):
+    model = Post
+    template_name = "feed_app/create_new_post.html"
+    fields = ['text']
+    # success_url = '/'
+    # login_url = '/login/'
