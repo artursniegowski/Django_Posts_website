@@ -42,11 +42,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     ## added
-    'feed_app.apps.FeedAppConfig',  # 'feed_app',
-    'django.contrib.sites',
+    # third party
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django.contrib.sites',
+    # own apps
+    'feed_app.apps.FeedAppConfig',  # 'feed_app',
+    'profiles_app.apps.ProfilesAppConfig', # 'profiles_app',
 
     ## default
     'django.contrib.admin',

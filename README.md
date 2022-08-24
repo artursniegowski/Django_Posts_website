@@ -8,6 +8,8 @@ https://django-allauth.readthedocs.io/en/latest/installation.html
 
 https://github.com/pennersr/django-allauth
 
+
+
 !!
 using tailwind for styling
 Tailwind CSS
@@ -15,6 +17,7 @@ https://tailwindcss.com/
 Used components : 
 https://tailwindcomponents.com/component/sidebar-navigation
 
+https://tailwindcomponents.com/component/post-artical
 
 
 
