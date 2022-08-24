@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -25,3 +27,10 @@ urlpatterns = [
     path('', include('allauth.urls')),
     path('admin/', admin.site.urls),   
 ]
+
+# During development, you can serve user-uploaded media files from MEDIA_ROOT 
+# using the django.views.static.serve() view.
+# This is not suitable for production use! For some common deployment 
+# strategies, see How to deploy static files.
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

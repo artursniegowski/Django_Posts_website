@@ -2,14 +2,14 @@
 
 
 
-
+###
 using django-allauth for authentication !
 https://django-allauth.readthedocs.io/en/latest/installation.html
 
 https://github.com/pennersr/django-allauth
 
 
-
+###
 !!
 using tailwind for styling
 Tailwind CSS
@@ -19,7 +19,10 @@ https://tailwindcomponents.com/component/sidebar-navigation
 
 https://tailwindcomponents.com/component/post-artical
 
-
+###
+using thubnamil package
+https://github.com/jazzband/sorl-thumbnail
+https://pypi.org/project/django-thumbnails/
 
 
 

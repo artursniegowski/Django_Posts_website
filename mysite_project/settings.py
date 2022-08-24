@@ -25,6 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # BASE_DIR same as PROJECT_DIR
 # PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Meddia served for non - production
+# URL that handles the media served from MEDIA_ROOT, 
+# used for managing stored files. It must end in a slash if set to a non-empty 
+# value. You will need to configure these files to be served in both development 
+# and production environments
+MEDIA_URL = 'media/'
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+MEDIA_ROOT = BASE_DIR / MEDIA_URL
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -47,6 +57,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django.contrib.sites',
+    'sorl.thumbnail',
+
     # own apps
     'feed_app.apps.FeedAppConfig',  # 'feed_app',
     'profiles_app.apps.ProfilesAppConfig', # 'profiles_app',
