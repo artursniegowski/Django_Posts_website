@@ -18,6 +18,7 @@ Used components :
 https://tailwindcomponents.com/component/sidebar-navigation
 
 https://tailwindcomponents.com/component/post-artical
+https://tailwindcomponents.com/component/buttons-with-icons
 
 ###
 using thubnamil package

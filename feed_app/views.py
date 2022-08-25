@@ -1,3 +1,4 @@
+from http.client import HTTPResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from feed_app.models import Post 
@@ -26,5 +27,16 @@ class CreateNewPostView(LoginRequiredMixin, generic.CreateView):
     model = Post
     template_name = "feed_app/create_new_post.html"
     fields = ['text']
-    # success_url = '/'
+    success_url = '/'
     # login_url = '/login/'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     self.request = request
+    #     return super().dispatch(request, *args, **kwargs)
+
+
+    def form_valid(self, form) -> HTTPResponse:
+        obj_form = form.save(commit=False)
+        obj_form.author = self.request.user
+        obj_form.save()
+        return super().form_valid(form)
