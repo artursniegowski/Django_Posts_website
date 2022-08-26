@@ -1,4 +1,3 @@
-from cgitb import text
 from http.client import HTTPResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -14,7 +13,7 @@ class HomePageView(generic.ListView):
     queryset = Post.objects.all().order_by("-id")[:30]
 
 # create a detail post view
-class PostDetailView(generic.DeleteView):
+class PostDetailView(generic.DetailView):
     # by default if model is Post the context will be post
     # context_object_name: str = "post"
     http_method_names: list[str] = ["get"]
@@ -32,9 +31,9 @@ class CreateNewPostView(LoginRequiredMixin, generic.CreateView):
     success_url = '/'
     # login_url = '/login/'
 
-    def dispatch(self, request, *args, **kwargs):
-        self.request = request
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     self.request = request
+    #     return super().dispatch(request, *args, **kwargs)
 
 
     def form_valid(self, form) -> HTTPResponse:
@@ -43,10 +42,11 @@ class CreateNewPostView(LoginRequiredMixin, generic.CreateView):
         obj_form.save()
         return super().form_valid(form)
 
-    
+
     def post(self, request, *args, **kwargs):        
         
         post = Post.objects.create(
+            # request.POST['text']
             text=request.POST.get('text'),
             author = request.user,
         )

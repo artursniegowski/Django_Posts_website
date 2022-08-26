@@ -4,7 +4,7 @@
 // so we can get the cookie, and set the request header to use X-CSRFToken
 // so if we in the future make an ajax request we dont have to apply crsf token 
 // to all of our ajax requests 
-// Ajax token is goign ot be set on the cookie , so we dont have to set it on every singel Ajax request 
+// Ajax token is goign to be set on the cookie , so we dont have to set it on every singel Ajax request 
 $.ajaxSetup({
     beforeSend: function beforeSend(xhr, settings) {
         function getCookie(name) {
@@ -82,5 +82,4 @@ $(document).on("click", ".js-toggle-modal", function(e) {
             $btn_submit.prop("disabled", false).text("Error"); 
         },
     })
-
 })

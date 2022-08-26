@@ -20,6 +20,9 @@ https://tailwindcomponents.com/component/sidebar-navigation
 https://tailwindcomponents.com/component/post-artical
 https://tailwindcomponents.com/component/buttons-with-icons
 
+detail view profile
+https://tailwindcomponents.com/component/profile-card
+
 ###
 using thubnamil package
 https://github.com/jazzband/sorl-thumbnail

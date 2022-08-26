@@ -22,15 +22,16 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('feed_app.urls', namespace='feed_app')),
+    path('profile/', include('profiles_app.urls', namespace='profiles_app')),
     # https://django-allauth.readthedocs.io/en/latest/views.html
     # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...
     path('', include('allauth.urls')),
     path('admin/', admin.site.urls),   
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # During development, you can serve user-uploaded media files from MEDIA_ROOT 
 # using the django.views.static.serve() view.
 # This is not suitable for production use! For some common deployment 
 # strategies, see How to deploy static files.
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
