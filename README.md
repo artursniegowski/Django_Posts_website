@@ -26,13 +26,16 @@ https://github.com/jazzband/sorl-thumbnail
 https://pypi.org/project/django-thumbnails/
 
 
+## !!!!!!
+IGNNORIG STATIC FOLDER 
+NOT IGNORING ? MEDIA FOLDER
 
 # Image_posting_website
 
 This is a responsive website that works like a blog where anyone can post an image and a short description of it. After adding it, the picture will be displayed with the text and date added on the website in a chronological order (starting from the most recent). A successful post will be indicated with a short Django message that will be visible only the first time someone views the home page. All the media files are stored and managed by Django as static files. This solution needs to be adjusted in order to work in production.
 
 
-Created with Django 4.1, sorl-thumbnail, Python 3.10.6 and Bootstrap 5. 
+Created with Django 4.1, sorl-thumbnail, Python 3.10.6 and Bootstrap 5, jQuery. 
 
 
 https://www.djangoproject.com/
@@ -40,6 +43,9 @@ https://www.djangoproject.com/
 https://github.com/jazzband/sorl-thumbnail
 
 
+jQuery
+https://jquery.com/
+using jquery ajaxs for new posts 
 
 In order to run the program: <br>
 1. Change the name of .env.example to .env and add your DJANGO_SECRET_KEY for your website.</br>

@@ -3,10 +3,11 @@
 {% block title %}Main feed page{% endblock  %}
 
 {% block main_content %}
-    {% for post in posts  %}
-        {% include  'feed_app/includes/post.html' with post=post show_detail_link=True %}
-    {% empty %}
-        There arent any posts. Be the first to post!
-    {% endfor %}
-
+    <div id="posts-container">
+        {% for post in posts  %}
+            {% include  'feed_app/includes/post.html' with post=post show_detail_link=True %}
+        {% empty %}
+            There arent any posts. Be the first to post!
+        {% endfor %}
+    </div>
 {% endblock  %}
