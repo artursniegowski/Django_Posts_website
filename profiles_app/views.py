@@ -22,7 +22,7 @@ class ProfileDetailView(generic.DetailView):
         # alternative
         # context["total_posts"] = self.request.user.post_set.all().count()
         # TODO: ADD the total number of posts
-        context["total_folowers"] = 'xxxxxx'
+        context["total_followers"] = 'xxxxxx'
         return context
         
     

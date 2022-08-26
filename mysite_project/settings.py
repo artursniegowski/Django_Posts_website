@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     # own apps
     'feed_app.apps.FeedAppConfig',  # 'feed_app',
     'profiles_app.apps.ProfilesAppConfig', # 'profiles_app',
+    'followers_app.apps.FollowersAppConfig', # 'followers_app',
 
     ## default
     'django.contrib.admin',
