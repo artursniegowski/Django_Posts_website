@@ -35,7 +35,7 @@ $.ajaxSetup({
     },
 });
 
-// 
+// Modal create a post !! 
 // Togling a modal !
 // with javascript
 // selecting element with class js-toggle-modal and adding two eventlistene on click
@@ -48,7 +48,7 @@ $(document).on("click", ".js-toggle-modal", function(e) {
     // making the modal to appear reappear
     $modal_element.toggleClass("hidden")
 })
-.on("click", ".js-submit", function(e) {
+.on("click", ".js-submit", function(e) {  // clicking the submit button on the modal
     e.preventDefault() // preventing natural behaior on the browser
 
     const textToPost = $modal_text_element.val().trim()
@@ -60,13 +60,14 @@ $(document).on("click", ".js-toggle-modal", function(e) {
         return false
     }
     
-    
     // setting properties of the clicked button
     // disabling it and adding replacing text to posting
     $btn_submit.prop("disabled", true).text("Posting!")
     $.ajax({
         type: 'POST',
-        url: $modal_text_element.data("post-url"), // similar to console.log($modal_text_element.attr("data-post-url"))
+        // data can be cahed and attr cant. make sense to use data on kind of const data
+        // that dosent change and to sue attr on data that will be changed
+        url: $modal_text_element.data("post-url"), // similar to $modal_text_element.attr("data-post-url")
         data: {
             text: textToPost,
         },
@@ -82,4 +83,48 @@ $(document).on("click", ".js-toggle-modal", function(e) {
             $btn_submit.prop("disabled", false).text("Error"); 
         },
     })
-})
+}) 
+// Following button
+// adding another chained event listener for the follow profile button
+.on("click", "#js-follow-button-detail-user", function (e) { 
+    e.preventDefault() // preventing a link to go anywehre or a button from submititng a form
+                        // preventing its natuaral behaviour
+
+    // grabing the following button
+    // const $followUserButton = $("#js-follow-button-detail-user");
+    // instead we can use this bc we alredy grabbed the button with the eventlistener !
+    const follow_action = $(this).attr("data-action-for-following")
+
+    // ajaxing data to our database  
+    $.ajax({
+        type: 'POST',
+        url: $(this).data("follow-url"), // similar to $("#js-follow-button-detail-user").attr("data-follow-url")
+        data: {
+            // .data("user-name") - when we use data it is going to be cacheed - so it wont work if we change it in the future
+            // this is why we have to use attr bc we will change the value !
+            follow_action: follow_action, //.data("action-for-following")
+            // and here we can use data and this can be cached bc user-name will not change and this is why it wont be a prblem
+            // if the user-name will be cached
+            username_to_follow: $(this).data("user-name"), //.attr("data-user-name")
+        },
+        success: (data) => { // it will return some data in json format
+            $("#js-follow-button-text").text(data.wording) // chanign text of the button
+            if (follow_action == 'follow') {
+                // change wording to unfollow
+                $(this).attr("data-action-for-following",'unfollow')
+
+            } else {
+                // change the wording to follow
+                $(this).attr("data-action-for-following",'follow')
+
+            }
+
+            // init the value of followers
+            $("#js-total-number-of-followers").text(data['followers'])
+
+        },
+        error: (error) => {
+            console.warn(error);
+        },
+    })
+}) 
