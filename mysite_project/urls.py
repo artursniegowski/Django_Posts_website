@@ -19,12 +19,19 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+# TODO : add a new section after logged in user
+# under home, where the user can update 
+# firstname, lastname, username, password, and image (avatar)
+# account area wher you can change all of the data 
+
+# TODO : Mobile resposive website ?
 
 urlpatterns = [
     path('', include('feed_app.urls', namespace='feed_app')),
     path('profile/', include('profiles_app.urls', namespace='profiles_app')),
     # https://django-allauth.readthedocs.io/en/latest/views.html
     # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...
+    # TODO : signin and sigup webpage !! front end work- ake it look nicer
     path('', include('allauth.urls')),
     path('admin/', admin.site.urls),   
 ] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

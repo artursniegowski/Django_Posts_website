@@ -3,14 +3,40 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 from feed_app.models import Post 
+from followers_app.models import Followers
+from typing import Any
+
 
 # Home page view
-class HomePageView(generic.ListView):
-    context_object_name: str = "posts"
+class HomePageView(generic.TemplateView):
     http_method_names: list[str] = ["get"]
-    model = Post
     template_name: str = "feed_app/index.html"
-    queryset = Post.objects.all().order_by("-id")[:30]
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            # if user logged in we will show a cusotmized list of posts
+            # first the post from people we follow and then the rest
+
+            # list of user that we follow - all the user that the logged user is following
+            # https://docs.djangoproject.com/en/4.1/ref/models/querysets/#values-list
+            following = list(
+                Followers.objects.filter(followed_by=self.request.user).values_list('following', flat=True)
+            )
+            # if list of following is empty
+            if not following:
+                # show the default posts
+                posts = Post.objects.all().order_by("-id")[:60]
+            else:
+                # show only the post of people we are following
+                posts = Post.objects.filter(author__in=following).order_by("-id")[:60] | Post.objects.exclude(author__in=following).order_by("-id")[:60]
+        else:
+            # else display last 30 post in descending order by id (newest first)
+            posts = Post.objects.all().order_by("-id")[:30]
+        
+        context['posts'] = posts
+        return context
+
 
 # create a detail post view
 class PostDetailView(generic.DetailView):
