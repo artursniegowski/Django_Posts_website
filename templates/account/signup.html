@@ -5,17 +5,90 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+  <!-- component made based on https://tailwindcomponents.com/component/tailwind-css-form -->
+  <div class="max-w-lg mx-auto">
+    <div class="text-center font-semibold text-black my-12">
+      <h1>{% trans "Sign Up" %}</h1>
+    </div>
+    
+    <div class="flex flex-col my-1 items-center">
+      <p class="mb-3 italic text-sm">{% blocktrans %}Already have an account? Then please log in.{% endblocktrans %}</p>
+      <div class="mb-3">
+        <a href="{{ login_url }}">
+          <button type="button" class="primaryAction text-white bg-blue-700 
+          hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+          text-sm px-5 py-2.5 text-center">{% trans "Log In" %}</button>
+        </a>
+      </div>
+    </div>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    <div class="relative flex py-5 items-center">
+      <div class="flex-grow border-t border-gray-400"></div>
+      <span class="flex-shrink mx-4 text-gray-400">or</span>
+      <div class="flex-grow border-t border-gray-400"></div>
+    </div>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {% comment %} {{ form.as_p }} {% endcomment %}
 
+      {% comment %} <h1 class="mb-2 text-red-500">
+        {% for error in form.errors.values %}
+          {{error}}
+        {% endfor %}
+      </h1> {% endcomment %}
+
+      <h1 class="mb-1 text-red-500">{{form.email.errors}}</h1>
+      <div class="mb-6">
+        {% comment %} <label for="email" class="text-sm text-center font-medium text-gray-900 block mb-2">Your email</label> {% endcomment %}
+        <input type="{{form.email.field.widget.input_type}}" name="{{form.email.html_name}}" id="{{form.email.id_for_label}}" 
+        class="bg-gray-50 border border-gray-300 
+        text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full p-2.5" placeholder="{{form.email.field.widget.attrs.placeholder}}" required 
+        autocomplete="{{form.email.field.widget.attrs.autocomplete}}"
+        {% if form.errors %}value="{{form.email.data}}"{% endif %}
+        >
+      </div>
+      <h1 class="mb-1 text-red-500">{{form.username.errors}}</h1>
+      <div class="mb-6">
+        {% comment %} <label for="email" class="text-sm text-center font-medium text-gray-900 block mb-2">Your email</label> {% endcomment %}
+        <input type="{{form.username.field.widget.input_type}}" name="{{form.username.html_name}}" id="{{form.username.id_for_label}}" 
+        class="bg-gray-50 border border-gray-300 
+        text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full p-2.5" placeholder="{{form.username.field.widget.attrs.placeholder}}" required
+        minlength="{{form.username.field.widget.attrs.minlength}}" maxlength="{{form.username.field.widget.attrs.maxlength}}"
+        autocomplete = "{{form.username.field.widget.attrs.autocomplete}}"
+        {% if form.errors %}value="{{form.username.data}}"{% endif %}
+        >
+      </div>
+      <h1 class="mb-1 text-red-500">{{form.password1.errors}}</h1>
+      <div class="mb-6">
+        {% comment %} <label for="password" class="text-sm text-center font-medium text-gray-900 block mb-2">Your password</label> {% endcomment %}
+        <input type="{{form.password1.field.widget.input_type}}" name="{{form.password1.html_name}}" id="{{form.password1.id_for_label}}" 
+        class="bg-gray-50 border border-gray-300 
+        text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full p-2.5" placeholder="{{form.password1.field.widget.attrs.placeholder}}" required
+        autocomplete = "{{form.password1.field.widget.attrs.autocomplete}}">
+      </div>
+      <h1 class="mb-1 text-red-500">{{form.password2.errors}}</h1>
+      <div class="mb-6">
+        {% comment %} <label for="password" class="text-sm text-center font-medium text-gray-900 block mb-2">Your password</label> {% endcomment %}
+        <input type="{{form.password2.field.widget.input_type}}" name="{{form.password2.html_name}}" id="{{form.password2.id_for_label}}" 
+        class="bg-gray-50 border border-gray-300 
+        text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full p-2.5" placeholder="{{form.password2.field.widget.attrs.placeholder}}" required
+        autocomplete = "{{form.password2.field.widget.attrs.autocomplete}}">
+      </div>
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="flex justify-center mb-6 ">
+          <button type="submit" class="text-white bg-green-500 hover:bg-green-800 
+          focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 
+          text-center">
+            {% trans "Create new account" %}
+          </button>
+      </div>
+    </form>
+  </div>
 {% endblock %}

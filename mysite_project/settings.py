@@ -237,6 +237,12 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 3
 
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# This backend is not intended for use in production – it is provided as a convenience that can be used during development.
+# nstead of sending out real emails the console backend just writes the emails that would be sent to the standard output.
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # default login url
 # The URL or named URL pattern where requests are redirected 

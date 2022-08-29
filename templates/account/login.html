@@ -7,40 +7,100 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+  <!-- component made based on https://tailwindcomponents.com/component/tailwind-css-form -->
+  <div class="max-w-lg mx-auto">
+    <div class="text-center font-semibold text-black my-12">
+      {% trans "Sign In" %} to Posts
+    </div>
 
-{% get_providers as socialaccount_providers %}
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+      {% comment %} {{ form.as_div }} {% endcomment %}
+      
+      <h1 class="mb-2 text-red-500">
+        {% for error in form.errors.values %}
+          {{error}}
+        {% endfor %}
+      </h1>
+      <div class="mb-6">
+          {% comment %} <label for="email" class="text-sm text-center font-medium text-gray-900 block mb-2">Your email</label> {% endcomment %}
+          <input type="{{form.login.field.widget.input_type}}" name="{{form.login.html_name}}" id="{{form.login.id_for_label}}" 
+          class="bg-gray-50 border border-gray-300 
+          text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+          block w-full p-2.5" placeholder="{{form.login.field.widget.attrs.placeholder}}" required
+          autocomplete = "{{form.login.field.widget.attrs.autocomplete}}"
+          {% if form.errors %}value="{{form.login.data}}"{% endif %}
+          >
+      </div>
+      <div class="mb-6">
+          {% comment %} <label for="password" class="text-sm text-center font-medium text-gray-900 block mb-2">Your password</label> {% endcomment %}
+          <input type="{{form.password.field.widget.input_type}}" name="{{form.password.html_name}}" id="{{form.password.id_for_label}}" 
+          class="bg-gray-50 border border-gray-300 
+          text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+          block w-full p-2.5" placeholder="{{form.password.field.widget.attrs.placeholder}}" required
+          autocomplete = "{{form.password.field.widget.attrs.autocomplete}}">
+      </div>
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="mb-6 w-full">
+        <button type="submit" class="primaryAction w-full text-white bg-blue-700 
+        hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+        text-sm px-5 py-2.5 text-center">{% trans "Log In" %}</button>
+      </div>
+    </form>
 
-<div class="socialaccount_ballot">
+    <div class="text-center">
+      <label class="block text-gray-500 font-bold">
+        <a href="{% url 'account_reset_password' %}" class="cursor-pointer tracking-tighter 
+          text-black border-b-2 border-gray-200 hover:border-gray-400">
+          <span>{% trans "Forgot Password?" %}</span>
+        </a>
+      </label>
+    </div>
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+    <div class="relative flex py-5 items-center">
+      <div class="flex-grow border-t border-gray-400"></div>
+      <span class="flex-shrink mx-4 text-gray-400">or</span>
+      <div class="flex-grow border-t border-gray-400"></div>
+    </div>
 
-  <div class="login-or">{% trans 'or' %}</div>
+    {% get_providers as socialaccount_providers %}
 
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
+    {% if socialaccount_providers %}
+      <p>{% blocktrans with site.name as site_name %}Please sign in with one
+      of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+      for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+  
+      <div class="socialaccount_ballot">
+  
+        <ul class="socialaccount_providers">
+          {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+  
+        <div class="login-or">{% trans 'or' %}</div>
+  
+      </div>
+  
+      {% include "socialaccount/snippets/login_extra.html" %}
+  
+    {% else %}
+      <div class="flex justify-center mb-6 ">
+        <a href="{{ signup_url }}">
+          <button type="button" class="text-white bg-green-500 hover:bg-green-800 
+          focus:ring-4 focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 
+          text-center">
+          {% blocktrans %}Create new account{% endblocktrans %}
+          </button>
+        </a>
+      </div>
+    {% endif %}
+  </div>
 
 {% endblock %}
+
+
+
+
+

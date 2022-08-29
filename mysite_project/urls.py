@@ -31,7 +31,6 @@ urlpatterns = [
     path('profile/', include('profiles_app.urls', namespace='profiles_app')),
     # https://django-allauth.readthedocs.io/en/latest/views.html
     # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...
-    # TODO : signin and sigup webpage !! front end work- ake it look nicer
     path('', include('allauth.urls')),
     path('admin/', admin.site.urls),   
 ] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
