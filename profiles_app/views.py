@@ -1,11 +1,13 @@
-from urllib import request
+from typing import Any
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponseBadRequest, HttpResponseNotFound ,JsonResponse
+from django.http import HttpResponseBadRequest, HttpResponseNotFound ,JsonResponse, HttpResponse, HttpRequest, HttpResponseRedirect
 from django.views import generic
 from feed_app.models import Post
+from django.shortcuts import redirect
 from followers_app.models import Followers 
-# from profiles_app.models import Profile 
+from profiles_app.forms import UpdateProfileForm, UpdateUserForm
+from profiles_app.models import Profile
 
 # Creating Profile detail view
 class ProfileDetailView(generic.DetailView):
@@ -18,7 +20,7 @@ class ProfileDetailView(generic.DetailView):
     slug_url_kwarg: str = "username" # this is the name of the slug from the url.py -> '<str:username>'
     template_name: str = "profiles_app/detail.html"
 
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.get_object()
@@ -39,6 +41,7 @@ class ProfileDetailView(generic.DetailView):
 # This will be a base view
 class FollowView(LoginRequiredMixin, generic.base.View):
     http_method_names: list[str] = ["post"]
+
 
     def post(self, request, *args, **kwargs):        
         
@@ -94,3 +97,67 @@ class FollowView(LoginRequiredMixin, generic.base.View):
             'wording': "Unfollow" if data['follow_action'] == 'follow' else 'Follow',
             'followers': Followers.objects.filter(following=other_user).count() , 
         })
+
+
+# creating the ProfileUpdate view
+class EditProfileView(LoginRequiredMixin, generic.UpdateView ):
+    model = User
+    template_name: str = "profiles_app/edit_profile.html"
+    slug_field: str = "username" # this exists in User model
+    slug_url_kwarg: str = "username" # this is the name of the slug from the url.py -> '<str:username>'
+    form_class = UpdateUserForm
+    second_form_class = UpdateProfileForm 
+    success_url = '/'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        if 'user_form' not in context:
+            context['user_form'] = self.form_class(self.request.GET, instance = self.request.user)
+        if 'user_form' not in context:
+            # context['profile_form'] = self.second_form_class(self.request.GET, self.request.FILES, instance = self.request.user.profile)
+            context['profile_form'] = self.second_form_class(self.request.GET, instance = self.request.user.profile)
+        return context
+
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        # return super().get(request, *args, **kwargs)
+        super().get(request, *args, **kwargs)
+        user_form = self.form_class(instance = request.user)
+        # profile_form = self.second_form_class(self.request.FILES ,instance = request.user.profile)
+        profile_form = self.second_form_class(instance = request.user.profile)
+        return self.render_to_response(
+            self.get_context_data(
+                object = self.object,
+                user_form = user_form,
+                profile_form = profile_form,
+        ))
+    
+    def post(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        # return super().post(request, *args, **kwargs)
+        self.object = self.get_object()
+        user_form = self.form_class(request.POST, instance = request.user)
+        profile_form = self.second_form_class(request.POST, self.request.FILES,  instance = request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            # check user name - this works alredy
+            # check email not in the database
+            userdata = user_form.save()
+            userdata.save()
+            # userdata.save_m2m() # only if amany to many relationship pexists and commit=False was used before
+            profiledata = profile_form.save()
+            profiledata.save()
+            # profiledata.save_m2m() # only if amany to many relationship pexists and commit=False was used before
+            # data can be changed before updating / saving to data base
+            # userdata = user_form.save(commit=False)
+            # check password ?
+            # userdata.save()
+            # profiledata = profile_form.save(commit=False)
+            # profiledata.user = userdata
+            # profiledata.save()
+            return redirect('profiles_app:edit_profile', username = userdata.username )
+            # return HttpResponseRedirect(self.get_success_url())
+        else: 
+            return self.render_to_response(
+                self.get_context_data(
+                    user_form = user_form,
+                    profile_form = profile_form,)
+            )

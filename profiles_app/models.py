@@ -16,6 +16,7 @@ class Profile(models.Model):
 
     def __str__(self) -> str:
         return self.user.username
+        
 
 # monitortin a signal for created user
 # https://docs.djangoproject.com/en/4.1/topics/signals/#receiver-functions

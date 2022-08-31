@@ -1,0 +1,43 @@
+{% extends 'base_page_templates/base.html' %}
+
+{% block title %}Edit profile{% endblock  %}
+{% comment %} TODO : finish {% endcomment %}
+{% block main_content %}
+File to edit
+
+{% comment %} TODO: add messages if the accunt was updated {% endcomment %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% comment %} errors for each for as a whole {% endcomment %}
+    {{ user_form.non_field_errors }}
+    {{ profile_form.non_field_errors }}
+    <div>
+        {{ user_form.username.errors }}
+        {{ user_form.username.label_tag }}
+        {{ user_form.username }}
+    </div>
+    <div>
+        {{ user_form.email.errors }}
+        {{ user_form.email.label_tag }}
+        {{ user_form.email }}
+    </div>
+    <div>
+        {{ user_form.first_name.errors }}
+        {{ user_form.first_name.label_tag }}
+        {{ user_form.first_name }}
+    </div>
+    <div>
+        {{ user_form.last_name.errors }}
+        {{ user_form.last_name.label_tag }}
+        {{ user_form.last_name }}
+    </div>
+    <div>
+        {{ profile_form.image.errors }}
+        {% comment %} {{ user_form.image.label_tag }} {% endcomment %}
+        {{ profile_form.image }}
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+{% endblock  %}
