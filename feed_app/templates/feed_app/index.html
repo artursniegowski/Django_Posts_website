@@ -3,6 +3,9 @@
 {% block title %}Main feed page{% endblock  %}
 
 {% block main_content %}
+
+    {% include  'feed_app/includes/messages.html' %}
+
     <div id="posts-container">
         {% for post in posts  %}
             {% include  'feed_app/includes/post.html' with post=post show_detail_link=True %}

@@ -1,6 +1,7 @@
 from typing import Any
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.http import HttpResponseBadRequest, HttpResponseNotFound ,JsonResponse, HttpResponse, HttpRequest, HttpResponseRedirect
 from django.views import generic
 from feed_app.models import Post
@@ -8,6 +9,25 @@ from django.shortcuts import redirect
 from followers_app.models import Followers 
 from profiles_app.forms import UpdateProfileForm, UpdateUserForm
 from profiles_app.models import Profile
+from allauth.account.views import PasswordChangeView
+from django.contrib import messages
+
+
+# creating a view for changing password - cusotmizing
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    """
+    Overriding Allauth view so we can redirect to a custom page.
+    """
+    def get_success_url(self) -> str:
+        """
+        Return the URL to redirect to after processing a valid form.
+
+        Using this instead of just defining the success_url attribute
+        because our url has a dynamic element.
+        """
+        success_url = reverse('profiles_app:custom_change_password')
+        return success_url
+        
 
 # Creating Profile detail view
 class ProfileDetailView(generic.DetailView):
@@ -153,6 +173,10 @@ class EditProfileView(LoginRequiredMixin, generic.UpdateView ):
             # profiledata = profile_form.save(commit=False)
             # profiledata.user = userdata
             # profiledata.save()
+
+            # adding a message indicating a successful update of profile
+            messages.add_message(request, messages.SUCCESS, 'Your profile was updated successfully.')
+
             return redirect('profiles_app:edit_profile', username = userdata.username )
             # return HttpResponseRedirect(self.get_success_url())
         else: 

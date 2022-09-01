@@ -16,9 +16,17 @@
         {% endif %}
         <div>
             <a class="flex items-center" href="{% url 'profiles_app:detail' post.author.username %}">
-                {% thumbnail post.author.profile.image "100x100" crop="center" as im %}
-                    <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{ im.url }}" alt="imag-avatar">
-                {% endthumbnail %}
+                {% if post.author.profile.image %}
+                    {% thumbnail post.author.profile.image "100x100" crop="center" as im %}
+                        <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{ im.url }}" alt="imag-avatar">
+                    {% endthumbnail %}
+                {% else %}
+                    <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block"
+                    width="100"
+                    height="100" 
+                    src="https://st3.depositphotos.com/23594922/31822/v/1600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg" 
+                    alt="imag-avatar">
+                {% endif %}	
                 <h1 class="text-gray-700 font-bold">{{ post.author.username }}</h1>
             </a>
         </div>

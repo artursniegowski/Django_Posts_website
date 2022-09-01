@@ -21,16 +21,17 @@ from django.urls import include, path
 
 # TODO : add a new section after logged in user
 # https://dev.to/earthcomfy/django-update-user-profile-33ho
+# https://docs.djangoproject.com/en/4.1/topics/auth/default/#django.contrib.auth.views.PasswordResetView
 # under home, where the user can update 
 # firstname, lastname, username, password, and image (avatar)
 # account area wher you can change all of the data 
 
 
 urlpatterns = [
-    path('', include('feed_app.urls')),
+    path('', include('feed_app.urls', namespace='feed_app')),
     # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...
     path('', include('allauth.urls')),
-    path('profile/', include('profiles_app.urls')),
+    path('profile/', include('profiles_app.urls', namespace='profiles_app' )),
     # https://django-allauth.readthedocs.io/en/latest/views.html
     path('admin/', admin.site.urls),   
 ] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

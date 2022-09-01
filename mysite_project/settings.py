@@ -156,7 +156,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static_frontend',
-    # BASE_DIR / 'static',
+    # BASE_DIR / 'static', # for production , after running collectstatic
 ]
 # for python manage.py collectstatic - where to move static files
 # for PRODUCTION we shoudl move the files !

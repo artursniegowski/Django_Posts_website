@@ -1,0 +1,6 @@
+/* form error messages from django  */
+.errorlist {
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}
