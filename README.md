@@ -78,57 +78,57 @@ In order to run the website: <br>
 ### Website views:
 </br>
 
-1. *Home-Page-View - if the user is logged in. The message at the top of the page is visible only for one session.* 
-</br>
 
+1. *Home-Page-View - if the user is logged in. The message at the top of the page is visible only for one session.* 
 ![Screenshot](docs/img/01-main_page_loged_in.png)
 
-2. *Home-Page-View - if the user is logged out.*  
 </br>
 
+2. *Home-Page-View - if the user is logged out.*  
 ![Screenshot](docs/img/02-main_page_loged_out.png)
 
-3. *Reset-Password-View - if the user is logged out.*  
 </br>
 
+3. *Reset-Password-View - if the user is logged out.*  
 ![Screenshot](docs/img/03-reset_password_page.png)
 
-4. *Login-Page-View.* 
 </br>
 
+4. *Login-Page-View.* 
 ![Screenshot](docs/img/04-sign_in_page.png)
 
-5. *Signup-View - with an example validation error.* 
 </br>
 
+5. *Signup-View - with an example validation error.* 
 ![Screenshot](docs/img/05-sign_up_with_validation_error.png)
 
-6. *Create-Post-View - with a modal and jQuery AJAX POST request.* 
 </br>
 
+6. *Create-Post-View - with a modal and jQuery AJAX POST request.* 
 ![Screenshot](docs/img/06-modal_create_post_with_jQuery_AJAX.png)
 
-7. *Post-Detail-View - a detailed view of a specific post.* 
 </br>
 
+7. *Post-Detail-View - a detailed view of a specific post.* 
 ![Screenshot](docs/img/07-post_detail_view.png)
 
-8. *User-Detail-View - with the photo, username, number of followers, and number of created posts.* 
+
 </br>
 
+8. *User-Detail-View - with the photo, username, number of followers, and number of created posts.* 
 ![Screenshot](docs/img/08-user_detail_view.png)
 
-9. *Profile-Detail-View - where the user can edit: username, email, first-name, last-name, upload a new photo, change password.* 
 </br>
 
+9. *Profile-Detail-View - where the user can edit: username, email, first-name, last-name, upload a new photo, change password.* 
 ![Screenshot](docs/img/09-profile_detail_view.png)
 
-10. *Profile-Detail-View - after updating your username.* 
 </br>
 
+10. *Profile-Detail-View - after updating your username.* 
 ![Screenshot](docs/img/10-profile_detail_view_updated_username.png)
 
-11. *Profile-Change-Password-View - changing password from the edit profile user page.*
 </br>
 
+11. *Profile-Change-Password-View - changing password from the edit profile user page.*
 ![Screenshot](docs/img/11-profile_detail_view_change_password.png)
