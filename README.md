@@ -32,7 +32,8 @@ All the media files are stored and managed by Django as static files. This solut
 
 
 </br>
-**Created with Django 4.1, sorl-thumbnail, django-allauth, django custom templates, Python 3.10.6, Tailwind CSS, JavaScript, jQuery with AJAX request, CSS, HTML.**</br>
+
+**Created with Django 4.1, sorl-thumbnail, django-allauth, django custom templates, Python 3.10.6, Tailwind CSS, JavaScript, jQuery with AJAX request, CSS, HTML.**
 </br>
 
 </br>
@@ -73,10 +74,13 @@ In order to run the website: <br>
 
 </br>
 </br>
-### Website views:</br>
+
+### Website views:
 </br>
 
-1. *Home-Page-View - if the user is logged in. The message at the top of the page is visible only for one session.* </br>
+1. *Home-Page-View - if the user is logged in. The message at the top of the page is visible only for one session.* 
+
+</br>
 ![Screenshot](docs/img/01-main_page_loged_in.png)
 
 2. *Home-Page-View - if the user is logged out.*  </br>
@@ -106,5 +110,5 @@ In order to run the website: <br>
 10. *Profile-Detail-View - after updating your username.* </br>
 ![Screenshot](docs/img/10-profile_detail_view_updated_username.png)
 
-11. *Profile-Change-Password-View - changing password from the edit profile user page.* </br>
+11. *Profile-Change-Password-View - changing password from the edit profile user page.*
 ![Screenshot](docs/img/11-profile_detail_view_change_password.png)
