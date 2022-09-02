@@ -1,16 +1,15 @@
-from typing import Any
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.urls import reverse
-from django.http import HttpResponseBadRequest, HttpResponseNotFound ,JsonResponse, HttpResponse, HttpRequest, HttpResponseRedirect
-from django.views import generic
-from feed_app.models import Post
-from django.shortcuts import redirect
-from followers_app.models import Followers 
-from profiles_app.forms import UpdateProfileForm, UpdateUserForm
-from profiles_app.models import Profile
 from allauth.account.views import PasswordChangeView
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.http import HttpResponseBadRequest, HttpResponseNotFound ,JsonResponse, HttpResponse, HttpRequest, HttpResponseRedirect
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views import generic
+from feed_app.models import Post
+from followers_app.models import Followers 
+from profiles_app.forms import UpdateProfileForm, UpdateUserForm
+from typing import Any
 
 
 # creating a view for changing password - cusotmizing
@@ -165,7 +164,7 @@ class EditProfileView(LoginRequiredMixin, generic.UpdateView ):
             # userdata.save_m2m() # only if amany to many relationship pexists and commit=False was used before
             profiledata = profile_form.save()
             profiledata.save()
-            # profiledata.save_m2m() # only if amany to many relationship pexists and commit=False was used before
+            # profiledata.save_m2m() # only if amany to many relationship exists and commit=False was used before
             # data can be changed before updating / saving to data base
             # userdata = user_form.save(commit=False)
             # check password ?

@@ -19,14 +19,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-# TODO : add a new section after logged in user
-# https://dev.to/earthcomfy/django-update-user-profile-33ho
-# https://docs.djangoproject.com/en/4.1/topics/auth/default/#django.contrib.auth.views.PasswordResetView
-# under home, where the user can update 
-# firstname, lastname, username, password, and image (avatar)
-# account area wher you can change all of the data 
-
-
 urlpatterns = [
     path('', include('feed_app.urls', namespace='feed_app')),
     # like /login/ - account_login , /signup/ - account_signup , /logout/ - account_logout , ...

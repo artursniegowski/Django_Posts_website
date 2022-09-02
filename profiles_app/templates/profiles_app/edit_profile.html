@@ -2,7 +2,7 @@
 {% load sorl_thumbnail %}
 
 {% block title %}Edit profile{% endblock  %}
-{% comment %} TODO : finish {% endcomment %}
+
 {% block main_content %}
 
     {% include  'feed_app/includes/messages.html' %}
@@ -14,7 +14,7 @@
         </h1>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% comment %} errors for each for as a whole {% endcomment %}
+            {% comment %} errors for each form as a whole {% endcomment %}
             {{ user_form.non_field_errors }}
             {{ profile_form.non_field_errors }}
             <div class="z-0 mb-6 w-full flex justify-center">
@@ -92,8 +92,6 @@
 
         <div class="relative flex py-5 items-center">
             <div class="flex-grow border-t border-gray-900"></div>
-            {% comment %} <span class="flex-shrink mx-4 text-gray-400">or</span>
-            <div class="flex-grow border-t border-gray-400"></div> {% endcomment %}
         </div>
 
         <br>

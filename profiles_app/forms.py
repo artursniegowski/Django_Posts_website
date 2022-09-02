@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from profiles_app.models import Profile
 
-# TODO: add widgets class to the fields
 # profile model
 class UpdateProfileForm(forms.ModelForm):
     image = forms.FileField(required=False)

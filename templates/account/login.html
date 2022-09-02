@@ -17,12 +17,8 @@
       {% csrf_token %}
 
       {% comment %} {{ form.as_div }} {% endcomment %}
-      
-      <h1 class="mb-2 text-red-500">
-        {% for error in form.errors.values %}
-          {{error}}
-        {% endfor %}
-      </h1>
+      {{ form.non_field_errors }}
+      <h1 class="mb-2 text-red-500">{{ form.login.errors }}</h1>
       <div class="mb-6">
           {% comment %} <label for="email" class="text-sm text-center font-medium text-gray-900 block mb-2">Your email</label> {% endcomment %}
           <input type="{{form.login.field.widget.input_type}}" name="{{form.login.html_name}}" id="{{form.login.id_for_label}}" 
@@ -33,6 +29,7 @@
           {% if form.errors %}value="{{form.login.data}}"{% endif %}
           >
       </div>
+      <h1 class="mb-2 text-red-500">{{ form.password.errors }}</h1>
       <div class="mb-6">
           {% comment %} <label for="password" class="text-sm text-center font-medium text-gray-900 block mb-2">Your password</label> {% endcomment %}
           <input type="{{form.password.field.widget.input_type}}" name="{{form.password.html_name}}" id="{{form.password.id_for_label}}" 

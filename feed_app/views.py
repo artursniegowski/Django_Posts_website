@@ -1,5 +1,5 @@
-from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
 from feed_app.models import Post 
@@ -61,7 +61,7 @@ class CreateNewPostView(LoginRequiredMixin, generic.CreateView):
     #     self.request = request
     #     return super().dispatch(request, *args, **kwargs)
 
-
+    
     def form_valid(self, form) -> HttpResponse:
         obj_form = form.save(commit=False)
         obj_form.author = self.request.user

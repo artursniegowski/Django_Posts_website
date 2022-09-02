@@ -6,14 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block head_title %}{% block title %}Default: Main Page{% endblock %}{% endblock  %}</title>
-    {% load static %}
     <!-- https://tailwindcss.com/docs/installation/play-cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
     <!-- own css addition -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/my_style.css' %}">
-    {% comment %} adding an extra filter to add classes for allauth {% endcomment %}
 </head>
 <body>
 

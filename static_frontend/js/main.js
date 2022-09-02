@@ -10,7 +10,6 @@ $.ajaxSetup({
         function getCookie(name) {
             let cookieValue = null;
 
-
             if (document.cookie && document.cookie !== '') {
                 const cookies = document.cookie.split(';');
 
@@ -45,7 +44,7 @@ $(document).on("click", ".js-toggle-modal", function(e) {
     // preventing the main event which here is click on the link to happen
     e.preventDefault() // so if it is a link dont do go anywhere, dont do anything
 
-    // making the modal to appear reappear
+    // making the modal to appear / reappear
     $modal_element.toggleClass("hidden")
 })
 .on("click", ".js-submit", function(e) {  // clicking the submit button on the modal

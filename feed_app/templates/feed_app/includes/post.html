@@ -6,7 +6,12 @@
         <span class="font-light text-gray-600">{{ post.date|date:"F d, Y, g:i a" }}</span>
     </div>
     <div class="mt-2">
-        <p class="mt-2 text-gray-600">{{ post.text }}</p>
+        <p class="mt-2 text-gray-600">
+            {% if show_detail_link %}
+                {{ post.text|slice:":100" }}
+            {% else %}
+                {{ post.text }}
+            {% endif %} </p>
     </div>
     <div class="flex justify-between items-center mt-4">
         {% if  show_detail_link %}
