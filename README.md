@@ -3,14 +3,14 @@
 This is a responsive website that works like a blog where users can create accounts in order to post on the website, or if they are not signed in, they are limited to only viewing them. The authentication of users is implemented with the use of django-allauth.
 The main page has a list of posts sorted in chronological order (starting from the most recent) and a left panel including all the possible options the current user has.</br>
 
-Signed-in users will have the option to:</br>
+Signed-in users will have the option to:
 1. Home - redirecting to main page. </br>
 2. New Post - posting, a new post. </br>
-3. Profile - redirecting to the profile view, where the user can change his username, email, first and last name, update the picture for the profile, and lastly, change the password. </br>
+3. Profile - redirecting to the profile view, where the user can change his/her username, email, first and last name, update the picture for the profile, and change the password. </br>
 4. Logout  - the user will be logged out. </br>
 </br>
 
-whereas users who are signed out will have the option to:</br> 
+whereas users who are signed out will have the option to:
 1. Home - redirecting to the main page </br>
 2. Login - redirecting to the login page where the user can either log in, create an account or reset the password (with an email token).</br>
 </br>
