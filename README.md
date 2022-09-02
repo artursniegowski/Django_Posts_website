@@ -32,9 +32,10 @@ All the media files are stored and managed by Django as static files. This solut
 
 
 </br>
-Created with Django 4.1, sorl-thumbnail, django-allauth, django custom templates, Python 3.10.6, Tailwind CSS, JavaScript, jQuery with AJAX request, CSS, HTML. 
+Created with Django 4.1, sorl-thumbnail, django-allauth, django custom templates, Python 3.10.6, Tailwind CSS, JavaScript, jQuery with AJAX request, CSS, HTML. </br>
 </br>
 
+</br>
 Django 4.1 </br>
 https://www.djangoproject.com/ </br>
 
