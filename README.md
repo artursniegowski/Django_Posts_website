@@ -60,8 +60,12 @@ https://tailwindcomponents.com/component/profile-card </br>
 jQuery </br>
 https://jquery.com/ </br>
 https://api.jquery.com/jquery.ajax/ </br>
+</br>
+
+---
 
 
+<br>
 In order to run the website: <br>
 1. Change the name of .env.example to .env and add your DJANGO_SECRET_KEY for your website. </br>
 2. navigate to the main directory, which contains the entire project. </br>
@@ -70,10 +74,11 @@ In order to run the website: <br>
 5. python manage.py migrate - execute your first migration command. </br>
 6. python manage.py createsuperuser - create a super user for your project. </br>
 7. python manage.py runserver - start your server, which will allow you to access your website via a web browser at localhost: 8000. </br>
+</br>
 
 
-</br>
-</br>
+---
+
 
 ### Website views:
 </br>
