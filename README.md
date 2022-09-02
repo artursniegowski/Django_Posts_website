@@ -28,8 +28,9 @@ On the main page, as well as on the edit profile view and change password view, 
 
 
 All the media files are stored and managed by Django as static files. This solution needs to be adjusted in order to work in production.
+</br>
 
-
+---
 
 </br>
 
