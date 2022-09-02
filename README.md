@@ -1,16 +1,19 @@
 # POSTS_website
 
 This is a responsive website that works like a blog where users can create accounts in order to post on the website, or if they are not signed in, they are limited to only viewing them. The authentication of users is implemented with the use of django-allauth.
-The main page has a list of posts sorted in chronological order (starting from the most recent) and a left panel including all the possible options the current user has.
-Signed-in users will have the option to:
-1. Home - redirecting to main page.
-2. New Post - posting, a new post.
-3. Profile - redirecting to the profile view, where the user can change his username, email, first and last name, update the picture for the profile, and lastly, change the password.
-4. Logout  - the user will be logged out.
-whereas users who are signed out will have the option to: 
-1. Home - redirecting to the main page
-2. Login - redirecting to the login page where the user can either log in, create an account or reset the password (with an email token).
+The main page has a list of posts sorted in chronological order (starting from the most recent) and a left panel including all the possible options the current user has.</br>
 
+Signed-in users will have the option to:</br>
+1. Home - redirecting to main page. </br>
+2. New Post - posting, a new post. </br>
+3. Profile - redirecting to the profile view, where the user can change his username, email, first and last name, update the picture for the profile, and lastly, change the password. </br>
+4. Logout  - the user will be logged out. </br>
+</br>
+
+whereas users who are signed out will have the option to:</br> 
+1. Home - redirecting to the main page </br>
+2. Login - redirecting to the login page where the user can either log in, create an account or reset the password (with an email token).</br>
+</br>
 
 Additionally, each post as well as each user has a detailed view. The detailed post view displays the full text of the post (on the main page, post texts are limited to 100 characters), the date it was posted, and the author. The detailed user view will show the user's picture and the count of created posts and followers.
 
@@ -54,10 +57,10 @@ https://tailwindcomponents.com/component/profile-card </br>
 
 jQuery </br>
 https://jquery.com/ </br>
+https://api.jquery.com/jquery.ajax/ </br>
 
 
-
-In order to run the program: <br>
+In order to run the website: <br>
 1. Change the name of .env.example to .env and add your DJANGO_SECRET_KEY for your website. </br>
 2. navigate to the main directory, which contains the entire project. </br>
 3. python -m venv ENV - create a virtula enviromet. </br>
@@ -69,36 +72,36 @@ In order to run the program: <br>
 
 
 Website views:</br>
-1. Home-Page-View - if the user is logged in. The message at the top of the page is visible only for one session. </br>
-2. Home-Page-View - if the user is logged out  </br>
-3. Reset-Password-View - if the user is logged out  </br>
-4. Login-Page-View </br>
-5. Signup-View - with an example validation error </br>
-6. Create-Post-View - with a modal and jQuery AJAX POST request </br>
-7. Post-Detail-View - a detailed view of a specific post </br>
-8. User-Detail-View - with the photo, username, number of followers, and number of created posts </br>
-9. Profile-Detail-View - where the user can edit: username, email, first-name, last-name, upload a new photo, change password </br>
-10. Profile-Detail-View - after updating your username </br>
-11. Profile-Change-Password-View - changing password from the edit profile user page </br>
 
+1. Home-Page-View - if the user is logged in. The message at the top of the page is visible only for one session. </br>
 ![Screenshot](docs/img/01-main_page_loged_in.png)
 
+2. Home-Page-View - if the user is logged out  </br>
 ![Screenshot](docs/img/02-main_page_loged_out.png)
 
-![Screenshot](03-reset_password_page.png)
+3. Reset-Password-View - if the user is logged out  </br>
+![Screenshot](docs/img/03-reset_password_page.png)
 
-![Screenshot](04-sign_in_page.png)
+4. Login-Page-View </br>
+![Screenshot](docs/img/04-sign_in_page.png)
 
-![Screenshot](05-sign_up_with_validation_error.png)
+5. Signup-View - with an example validation error </br>
+![Screenshot](docs/img/05-sign_up_with_validation_error.png)
 
-![Screenshot](06-modal_create_post_with_jQuery_AJAX.png)
+6. Create-Post-View - with a modal and jQuery AJAX POST request </br>
+![Screenshot](docs/img/06-modal_create_post_with_jQuery_AJAX.png)
 
-![Screenshot](07-post_detail_view.png)
+7. Post-Detail-View - a detailed view of a specific post </br>
+![Screenshot](docs/img/07-post_detail_view.png)
 
-![Screenshot](08-user_detail_view.png)
+8. User-Detail-View - with the photo, username, number of followers, and number of created posts </br>
+![Screenshot](docs/img/08-user_detail_view.png)
 
-![Screenshot](09-profile_detail_view.png)
+9. Profile-Detail-View - where the user can edit: username, email, first-name, last-name, upload a new photo, change password </br>
+![Screenshot](docs/img/09-profile_detail_view.png)
 
-![Screenshot](10-profile_detail_view_updated_username.png)
+10. Profile-Detail-View - after updating your username </br>
+![Screenshot](docs/img/10-profile_detail_view_updated_username.png)
 
-![Screenshot](11-profile_detail_view_change_password.png)
+11. Profile-Change-Password-View - changing password from the edit profile user page </br>
+![Screenshot](docs/img/11-profile_detail_view_change_password.png)
